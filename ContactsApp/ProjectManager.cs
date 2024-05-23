@@ -21,7 +21,6 @@ namespace ContactsApp
         /// <param name="path">Путь для сохранения файлов.</param>
         public static void SaveToFile(List<Contact> data, string path)
         {
-            path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), path);
             var serialized = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(path, serialized);
         }
@@ -33,7 +32,6 @@ namespace ContactsApp
         /// <returns>Список объектов класса <see cref="Contact"/>.</returns>
         public static List<Contact> LoadFromFile(string path)
         {
-            path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), path);
             var data = new List<Contact>();
             if (File.Exists(path))
             {

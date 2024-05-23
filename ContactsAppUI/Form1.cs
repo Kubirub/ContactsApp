@@ -41,7 +41,6 @@ namespace ContactsAppUI
             Contacts = ProjectManager.LoadFromFile(path);
             Contacts = Sorter.SortContacts(Contacts);
             UpdateContacts(Contacts);
-           ///BirthdayBoyLabel.Text = Sorter.GetBirthdayBoys(Contacts, DateTime.Now);
         }
 
         private void Form1_Load(object sender, EventArgs e)
