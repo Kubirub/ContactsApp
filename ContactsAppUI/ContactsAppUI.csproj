@@ -112,6 +112,7 @@
     <Content Include="Resources\DeleteContactIcon_512x512.png" />
     <Content Include="Resources\EditContactIconContrast_512x512.png" />
     <Content Include="Resources\EditContactIcon_512x512.png" />
+    <None Include="Resources\Warning_512x512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

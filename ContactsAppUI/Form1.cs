@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ContactApp.Service;
 using ContactsApp;
 using ContactsAppUI.Properties;
 
@@ -41,6 +42,7 @@ namespace ContactsAppUI
             Contacts = ProjectManager.LoadFromFile(path);
             Contacts = Sorter.SortContacts(Contacts);
             UpdateContacts(Contacts);
+            BirthdayBoyLabel.Text = Sorter.GetBirthdayBoys(Contacts, DateTime.Now);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -118,8 +120,7 @@ namespace ContactsAppUI
             if (addForm.DialogResult == DialogResult.OK)
             {
                 Contacts.Add(TransferContact.Data);
-                var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "contacts.json");
-                ProjectManager.SaveToFile(Contacts, path);
+                ProjectManager.SaveToFile(Contacts, Paths.PathToFiles);
                 Contacts = Sorter.SortContacts(Contacts);
                 UpdateContacts(Contacts);
             }
@@ -167,8 +168,7 @@ namespace ContactsAppUI
                 if (addForm.DialogResult == DialogResult.OK)
                 {
                     Contacts[index] = TransferContact.Data;
-                    var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "contacts.json");
-                    ProjectManager.SaveToFile(Contacts, path);
+                    ProjectManager.SaveToFile(Contacts, Paths.PathToFiles);
                     Contacts = Sorter.SortContacts(Contacts);
                     UpdateContacts(Contacts);
                     ContactsListBox.SelectedIndex = index;
@@ -194,8 +194,7 @@ namespace ContactsAppUI
                 if (warning == DialogResult.Yes)
                 {
                     Contacts.RemoveAt(index);
-                    var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "contacts.json");
-                    ProjectManager.SaveToFile(Contacts, path);
+                    ProjectManager.SaveToFile(Contacts, Paths.PathToFiles);
                     Contacts = Sorter.SortContacts(Contacts);
                     UpdateContacts(Contacts);
                     ContactsListBox.SelectedIndex = -1;
@@ -267,6 +266,11 @@ namespace ContactsAppUI
                 FoundedContacts = Sorter.SortContacts(Contacts, mask);
                 UpdateContacts(FoundedContacts);
             }
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
